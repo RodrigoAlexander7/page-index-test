@@ -3,7 +3,7 @@ from core.config import settings
 
 from pageindex import PageIndexClient
 import pageindex.utils as utils
-
+from google.genai import types
 
 class GeminiClient:
     def __init__(self):
@@ -13,7 +13,12 @@ class GeminiClient:
     async def generate_text(self, prompt: str) -> str:
         response = self.gemini.models.generate_content(
             model=self.model_name,
-            contents=prompt
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                thinking_config=types.ThinkingConfig(
+                    thinking_level="high"
+                )
+            ),
         )
         return response.text
 

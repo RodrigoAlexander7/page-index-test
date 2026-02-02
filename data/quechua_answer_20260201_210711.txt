@@ -1,0 +1,40 @@
+Query: ¿Cuáles son las reglas de formación de plural en quechua?
+Timestamp: 2026-02-01 21:07:11
+================================================================================
+
+Answer:
+Basado en el contexto proporcionado, las reglas de formación de plural en quechua se dividen según la categoría de la palabra:
+
+**1. En sustantivos y nombres:**
+*   **Sufijo general:** Se utiliza el sufijo pluralizador **-kuna**. El singular no lleva ninguna marca específica.
+    *   *Ejemplos:* `Chukcha-kuna` (cabellos), `allpa-kuna` (tierras), `wasi-kuna` (casas).
+
+**2. En pronombres personales:**
+*   **Primera persona (nosotros):** Existen dos formas:
+    *   **Inclusivo:** `ñuqanchik` (incluye al oyente).
+    *   **Exclusivo:** `ñuqayku` (excluye al oyente).
+*   **Segunda persona (ustedes):** `qamkuna` (raíz + -kuna).
+*   **Tercera persona (ellos/ellas):** `paykuna` (raíz + -kuna).
+
+**3. En pronombres demostrativos:**
+*   Se añade el sufijo **-kuna** a la raíz.
+    *   *Ejemplos:* `kaykuna` (estos/as), `chaykuna` (esos/as), `wakkuna` (aquellos/as).
+
+**4. Marcas de persona (posesión y verbos):**
+Para pluralizar personas en contextos de pertenencia o acción verbal, se utilizan marcas específicas:
+*   **Primera persona inclusiva:** `-nchik`
+*   **Primera persona exclusiva:** `-yku` (en verbos también se usa `-niku`)
+*   **Segunda persona:** `-chik`
+*   **Tercera persona:** `-ku`
+
+*Ejemplos de posesión:* `Wawqi-nchik` (nuestro hermano), `Wawqi-yki-chik` (tus hermanos), `Wawqi-n-ku` (sus hermanos).
+*Ejemplos verbales:* `miku-nchik` (comemos), `miku-nkichik` (ustedes comen), `miku-nku` (ellos comen).
+
+================================================================================
+Retrieved Nodes (6):
+- Node 0015 (Page 7): Quechua Word Structure and Classification
+- Node 0017 (Page 14): Quechua Suffixes: Case, Derivation, and Verbal Inflection
+- Node 0019 (Page 17): A. SUFIJOS FLEXIVOS:
+- Node 0023 (Page 17): Flexión de número:
+- Node 0027 (Page 29): CAPITULO II
+- Node 0028 (Page 29): Morphology: Pronouns and Nouns in Quechua

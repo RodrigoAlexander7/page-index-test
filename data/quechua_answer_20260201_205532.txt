@@ -1,0 +1,37 @@
+Query: ¿Cuáles son las reglas de formación de plural en quechua?
+Timestamp: 2026-02-01 20:55:32
+================================================================================
+
+Answer:
+Basado en el contexto proporcionado, las reglas de formación del plural en quechua se dividen según la categoría de la palabra:
+
+**1. En sustantivos y nombres (Sufijo de número):**
+*   **Regla general:** Se utiliza el sufijo pluralizador **-kuna**.
+    *   Ejemplos: *Chukchakuna* (cabellos), *Qallukuna* (lenguas), *Kirukuna* (dientes).
+*   **Para pluralizar personas (poseedores):** Se utilizan marcas o sufijos específicos dependiendo de la persona gramatical:
+    *   **-nchik:** Primera persona plural inclusiva (nosotros/nuestro).
+    *   **-yku:** Primera persona plural exclusiva (nosotros/nuestro).
+    *   **-chik:** Segunda persona plural (ustedes/tus).
+    *   **-ku:** Tercera persona plural (ellos/ellas/sus).
+
+**2. En verbos (Flexión de número):**
+Para indicar que varias personas realizan la acción, se emplean los siguientes sufijos:
+*   **-nchik:** Primera persona plural inclusiva (ej: *mikunchik* - nosotros comemos).
+*   **-niku / -yku:** Primera persona plural exclusiva (ej: *mikuniku* - nosotros comemos).
+*   **-nkichik:** Segunda persona plural (ej: *mikunkichik* - ustedes comen).
+*   **-nku:** Tercera persona plural (ej: *mikunku* - ellos/ellas comen).
+
+**3. En pronombres:**
+*   **Pronombres personales:** La primera persona plural tiene dos formas: **ñuqayku** (exclusivo) y **ñuqanchik** (inclusivo). Para la segunda y tercera persona se añade el sufijo **-kuna**: *qamkuna* (ustedes) y *paykuna* (ellos/ellas).
+*   **Pronombres demostrativos:** Se añade el sufijo **-kuna** a la raíz singular: *kaykuna* (estos/as), *chaykuna* (esos/as) y *wakkuna* (aquellos/as).
+
+**Nota importante sobre la primera persona:** El quechua distingue entre el plural **inclusivo** (incluye al oyente) y el **exclusivo** (excluye al oyente).
+
+================================================================================
+Retrieved Nodes (6):
+- Node 0015 (Page 7): Quechua Word Structure and Classification
+- Node 0017 (Page 14): Quechua Suffixes: Case, Derivation, and Verbal Inflection
+- Node 0019 (Page 17): A. SUFIJOS FLEXIVOS:
+- Node 0023 (Page 17): Flexión de número:
+- Node 0027 (Page 29): CAPITULO II
+- Node 0028 (Page 29): Morphology: Pronouns and Nouns in Quechua
