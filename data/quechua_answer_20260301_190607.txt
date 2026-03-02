@@ -1,0 +1,28 @@
+Query: ¿Cuáles son las reglas de formación de plural en quechua?
+Timestamp: 2026-03-01 19:06:07
+================================================================================
+
+Answer:
+Basado en el documento proporcionado, las reglas de formación del plural (flexión de número) en quechua son las siguientes:
+
+1.  **Para los nombres (sustantivos):**
+    *   **Singular:** No lleva ningún sufijo específico.
+    *   **Plural:** Se añade el sufijo pluralizador **–kuna**.
+    *   *Ejemplos:* Chukcha–kuna (cabellos), Qallu–kuna (lenguas), Kiru–kuna (dientes).
+
+2.  **Para pluralizar personas (marcas de persona en posesivos o verbos):**
+    Se utilizan sufijos específicos para indicar que varias personas realizan la acción o poseen algo:
+    *   **–nchik**: Primera persona inclusiva (yo y tú/ustedes). Ejemplo: *Wawqi–nchik* (nuestro hermano).
+    *   **–yku**: Primera persona exclusiva (yo y otros, pero no tú). Ejemplo: *Wawqi–yku* (nuestro hermano).
+    *   **–chik**: Segunda persona (tú -> ustedes). Ejemplo: *Wawqi–yki–chik* (tus hermanos [de ustedes]).
+    *   **–ku**: Tercera persona (él/ella -> ellos/ellas). Ejemplo: *Wawqi–n–ku* (sus hermanos).
+
+Además, en el caso de los **pronombres personales**, el plural se forma así:
+*   1ª persona: tiene dos formas, **ñuqayku** (exclusivo) y **ñuqanchik** (inclusivo).
+*   2ª y 3ª persona: agregan **–kuna** (*qamkuna*, *paykuna*).
+
+================================================================================
+Retrieved Nodes (3):
+- Node 0015 (Page 7): Quechua Word Structure and Classification
+- Node 0023 (Page 17): Flexión de número:
+- Node 0028 (Page 29): Morphology: Pronouns and Nouns in Quechua
