@@ -1,0 +1,85 @@
+Translation Query:
+
+Traduce las siguientes 5 frases del quechua al español:
+1. Ñuqa hatun wasipi tiyani
+2. Qam imaynataq kasanki
+3. Paykunaqa chakrapi llank'anku
+4. Inti rikcharimuchkan
+5. Mama wayk'usqanta mikhuni
+
+================================================================================
+
+Timestamp: 2026-03-01 19:21:49
+
+Translation Result:
+Basado en los documentos de gramática quechua proporcionados, aquí tienes las traducciones de las 5 frases solicitadas, junto con la explicación de los elementos utilizados según el contexto:
+
+### 1. Ñuqa hatun wasipi tiyani
+**Traducción:** **Yo vivo en la casa grande.**
+
+*   **Ñuqa:** Pronombre personal de primera persona singular "Yo" (Doc 2, § 3).
+*   **Hatun:** Adjetivo que significa "grande" (Doc 1, 3.1.4).
+*   **Wasi-pi:** Sustantivo "casa" + sufijo locativo **-pi** que significa "en" (Doc 1, Caso locativo; Doc 2, § 6.6).
+*   **Tiya-ni:** Verbo "vivir" + sufijo de primera persona **-ni** (Doc 2, § 2.1).
+
+### 2. Qam imaynataq kasanki
+**Traducción:** **¿Cómo estás (tú)?**
+
+*   **Qam:** Pronombre personal de segunda persona singular "Tú" (Doc 2, § 3).
+*   **Imayna-taq:** Pronombre interrogativo "Cómo" (Doc 1, 2.1.5; Doc 2, § 7) + sufijo **-taq** utilizado para formular preguntas o contrastes (Doc 1, 1.3.2.2; Doc 2, § 7).
+*   **Kasanki:** Del verbo *kay* ("ser/estar"). Aunque el texto enseña la forma progresiva como *-chka* (*kachkanki*), el contexto gramatical indica que es la conjugación de segunda persona dirigida al estado del sujeto.
+
+### 3. Paykunaqa chakrapi llank'anku
+**Traducción:** **Ellos trabajan en la chacra (o en el campo).**
+
+*   **Paykuna-qa:** Pronombre "Ellos" (Doc 2, § 3) + sufijo **-qa** que marca el tópico o tema de la oración (Doc 1, 1.3.2.2; Doc 2, § II).
+*   **Chakra-pi:** Sustantivo "chacra" (mencionado en ejemplos de Doc 1, oraciones compuestas) + sufijo locativo **-pi** "en".
+*   **Llank'a-nku:** Verbo "trabajar" (listado como *Llamkay* o *Llamkan* en Doc 1 y Doc 2) + sufijo de tercera persona plural **-nku** (Doc 2, § 2.1).
+
+### 4. Inti rikcharimuchkan
+**Traducción:** **El sol está despertando (o está saliendo hacia aquí).**
+
+*   **Inti:** Sustantivo "Sol" (Doc 1, 2.2.1.1).
+*   **Rikchari-mu-chka-n:**
+    *   *Rikchari:* Raíz verbal (contextualmente "despertar" o "aparecer").
+    *   **-mu:** Sufijo translocativo/cislocativo que indica dirección hacia el hablante ("hacia aquí") (Doc 1, Derivación Deverbativa; Doc 2, § 5.9).
+    *   **-chka:** Sufijo progresivo/durativo que indica que la acción está ocurriendo en este momento ("está ...-ando") (Doc 1, Sufijos Aspectuales; Doc 2, § 2.2).
+    *   **-n:** Tercera persona singular (Doc 2, § 2.1).
+
+### 5. Mama wayk'usqanta mikhuni
+**Traducción:** **Como lo que mamá cocinó.**
+
+*   **Mama:** Sustantivo "mamá" (Doc 1).
+*   **Wayk'u-sqa-n-ta:**
+    *   *Wayk'u:* Raíz verbal para "cocinar" (equivalente al *yanu* mencionado en el texto).
+    *   **-sqa:** Sufijo de participio pasado o nominalizador. El texto explica que **-sqa** forma oraciones subordinadas que se traducen como "lo que [verbo]" (Doc 1, Subordinación nominalizada; Doc 2, § I).
+    *   **-n:** Posesivo de tercera persona (su) que indica el sujeto de la subordinada (Doc 1).
+    *   **-ta:** Sufijo de caso acusativo que marca el objeto directo (Doc 1, Caso Acusativo; Doc 2, § 6.3).
+*   **Mikhu-ni:** Verbo "comer" (*mikuy*) + primera persona **-ni** "yo como" (Doc 1, Persona sujeto; Doc 2, § 2.2).
+
+================================================================================
+Sources Used:
+
+From Quechua Grammar (8 nodes):
+- Node 0016 (Page 11): Quechua Case System and Derivational Suffixes
+- Node 0021 (Page 17): Persona sujeto
+- Node 0025 (Page 21): DERIVACIÓN DEVERBATIVA:
+- Node 0026 (Page 26): 1.3.2.1. Sufijos validadores.
+- Node 0028 (Page 29): Morphology: Pronouns and Nouns in Quechua
+- Node 0030 (Page 37): Quechua Adjectives and Verb Practice
+- Node 0035 (Page 57): Quechua Sentence Structure: Verbs, Modes, and Compound Sentences
+- Node 0036 (Page 61): Coordinated and Subordinate Clauses in Quechua
+
+From Gramar (12 nodes):
+- Node 0005 (Page 9): kay / 'estar'
+- Node 0029 (Page 32): Sallqa
+- Node 0037 (Page 36): § 2. La conjugación en presente
+- Node 0038 (Page 36): § 2.1. Presente simple
+- Node 0039 (Page 37): § 2.2. Presente progresivo
+- Node 0041 (Page 39): Verbo llamkay ‘trabajar’ en presente simple
+- Node 0044 (Page 41): § 3. Los pronombres personales del quechua
+- Node 0051 (Page 47): § 6.3. Acusativo: -ta ‘a’
+- Node 0060 (Page 59): § II. El sufijo de tópico -qa
+- Node 0063 (Page 61): § 14. El sufijo independiente –taq
+- Node 0080 (Page 109): Past Tenses and the Past Participle in Quechua
+- Node 0084 (Page 125): Verbal Suffixes and Numeral System

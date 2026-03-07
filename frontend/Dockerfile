@@ -1,0 +1,55 @@
+#Docker Multistage
+# First stage
+# Use node 22.20 and the alpine 3.21 base image (Mini OS)
+FROM node:22.20-alpine3.21 AS builder
+
+# Create app directory and 
+WORKDIR /app/
+
+# Activate pnpm
+RUN corepack enable 
+
+# Copy package.json and package-lock.json files and install
+COPY package*.json pnpm-lock.yaml ./
+
+# install static versions
+RUN pnpm install --frozen-lockfile
+
+COPY . .
+
+### Declaramos que recibiremos una variable en el build
+# next necesita variables publicas(NEXT_PUBLIC...) en el build(pke ahi genera el html) no en ejecucion
+ARG NEXT_PUBLIC_API_URL
+### La convertimos en variable de entorno para que el build la lea
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+
+# Build the project
+RUN pnpm run build
+# Delete dev dependences
+RUN pnpm prune --prod
+
+# Second stage
+# * run is used on build time -> Create a new layer
+# * CMD is used container ejecution time
+
+FROM node:22.20-alpine3.21 AS runner
+WORKDIR /app
+
+RUN corepack enable
+
+# COPIAR LO NECESARIO:
+# 1. package.json (para saber qué scripts correr)
+COPY --from=builder /app/package.json ./
+# 2. node_modules (las librerías descargadas)
+COPY --from=builder /app/node_modules ./node_modules
+# 3. .next (tu aplicación compilada)
+COPY --from=builder /app/.next ./.next
+# 4. public (imágenes, favicons, etc.)
+COPY --from=builder /app/public ./public
+
+### Le decimos a Next.js que use el puerto 8080 por defecto (que es el de google cloud)
+ENV PORT=8080
+###  Exponemos el puerto (es solo formalismo, en realidad no hace nada) -> Documentacion
+EXPOSE 8080
+
+CMD [ "pnpm", "start" ]
