@@ -42,3 +42,99 @@ resource "google_secret_manager_secret" "gemini_key" {
 
   depends_on = [google_project_service.secretmanager_api]
 }
+
+# **********************************
+# Primero corremo hasta este punto
+# para que google cloud cree el secret manager, luego lo llenamos y finalmente contruimos las imagenes
+# si intentamos correr todo de golpe fallara pke el google secret manager no tiene nada (y google exige q tenga algo)
+# por eso despues de la primera parte corremos el script upload_secrets
+
+# ==========================================
+# BACKEND: FASTAPI
+# ==========================================
+
+# 1. Identidad del Backend (Service Account)
+resource "google_service_account" "backend_sa" {
+  account_id   = "fastapi-backend-sa"
+  display_name = "Service Account para FastAPI Backend"
+}
+
+# 2. Le damos permiso a la Service Account para leer secretos
+resource "google_project_iam_member" "secret_accessor" {
+  project = "TU_ID_DE_PROYECTO" # <--- ¡CÁMBIALO!
+  role    = "roles/secretmanager.secretAccessor"
+  member  = "serviceAccount:${google_service_account.backend_sa.email}"
+}
+
+# 3. El Servicio Cloud Run del Backend
+resource "google_cloud_run_v2_service" "backend_api" {
+  name     = "fastapi-backend"
+  location = "us-central1"
+
+  template {
+    service_account = google_service_account.backend_sa.email
+    
+    containers {
+      # Usamos la imagen "placeholder" temporalmente
+      image = "us-docker.pkg.dev/cloudrun/container/hello" 
+      
+      # Inyectamos el secreto como variable de entorno
+      env {
+        name = "GEMINI_API_KEY"
+        value_source {
+          secret_key_ref {
+            secret  = "GEMINI_API_KEY" # El nombre que pusiste en tu .env.prod
+            version = "latest"
+          }
+        }
+      }
+    }
+  }
+}
+
+# 4. Hacemos que el Backend sea público (accesible desde internet)
+resource "google_cloud_run_v2_service_iam_member" "backend_publico" {
+  name     = google_cloud_run_v2_service.backend_api.name
+  location = google_cloud_run_v2_service.backend_api.location
+  role     = "roles/run.invoker"
+  member   = "allUsers"
+}
+
+# ==========================================
+# FRONTEND: NEXT.JS
+# ==========================================
+
+# 5. El Servicio Cloud Run del Frontend
+resource "google_cloud_run_v2_service" "frontend_app" {
+  name     = "nextjs-frontend"
+  location = "us-central1"
+
+  template {
+    containers {
+      # Imagen placeholder temporal
+      image = "us-docker.pkg.dev/cloudrun/container/hello" 
+      
+      # Next.js no necesita leer secretos en tiempo de ejecución
+      # porque las variables se inyectaron en el Docker build
+    }
+  }
+}
+
+# 6. Hacemos que el Frontend sea público
+resource "google_cloud_run_v2_service_iam_member" "frontend_publico" {
+  name     = google_cloud_run_v2_service.frontend_app.name
+  location = google_cloud_run_v2_service.frontend_app.location
+  role     = "roles/run.invoker"
+  member   = "allUsers"
+}
+
+# ==========================================
+# OUTPUTS (Para que Terraform nos dé las URLs al terminar)
+# ==========================================
+output "backend_url" {
+  value = google_cloud_run_v2_service.backend_api.uri
+}
+
+output "frontend_url" {
+  value = google_cloud_run_v2_service.frontend_app.uri
+}
