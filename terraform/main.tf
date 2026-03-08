@@ -34,7 +34,7 @@ resource "google_artifact_registry_repository" "mi_repo" {
 # 4. Secret Manager: La caja fuerte para GEMINI_API_KEY
 resource "google_secret_manager_secret" "gemini_key" {
 # establece el nombre (secret_id) pero no el contenido aun, eso se hace despues
-  secret_id = "gemini-api-key"
+  secret_id = "GEMINI_API_KEY"
 
   replication {
     auto {}
