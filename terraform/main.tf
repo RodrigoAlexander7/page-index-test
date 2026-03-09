@@ -61,7 +61,7 @@ resource "google_service_account" "backend_sa" {
 
 # 2. Le damos permiso a la Service Account para leer secretos
 resource "google_project_iam_member" "secret_accessor" {
-  project = "TU_ID_DE_PROYECTO" # <--- ¡CÁMBIALO!
+  project = "page-index-489500" 
   role    = "roles/secretmanager.secretAccessor"
   member  = "serviceAccount:${google_service_account.backend_sa.email}"
 }
@@ -70,6 +70,8 @@ resource "google_project_iam_member" "secret_accessor" {
 resource "google_cloud_run_v2_service" "backend_api" {
   name     = "fastapi-backend"
   location = "us-central1"
+
+  depends_on = [google_project_iam_member.secret_accessor]
 
   template {
     service_account = google_service_account.backend_sa.email
@@ -90,6 +92,13 @@ resource "google_cloud_run_v2_service" "backend_api" {
       }
     }
   }
+  
+  # to say terraform do not re create the image if I upload another new (the changes with github actions)
+  lifecycle {
+    ignore_changes = [
+      template[0].containers[0].image
+    ]
+  }
 }
 
 # 4. Hacemos que el Backend sea público (accesible desde internet)
@@ -107,8 +116,7 @@ resource "google_cloud_run_v2_service_iam_member" "backend_publico" {
 # 5. El Servicio Cloud Run del Frontend
 resource "google_cloud_run_v2_service" "frontend_app" {
   name     = "nextjs-frontend"
-  location = "us-central1"
-
+  location = "us-central1"  
   template {
     containers {
       # Imagen placeholder temporal
@@ -117,6 +125,11 @@ resource "google_cloud_run_v2_service" "frontend_app" {
       # Next.js no necesita leer secretos en tiempo de ejecución
       # porque las variables se inyectaron en el Docker build
     }
+  }
+  lifecycle {
+    ignore_changes = [
+      template[0].containers[0].image
+    ]
   }
 }
 
