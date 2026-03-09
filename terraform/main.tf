@@ -80,6 +80,11 @@ resource "google_cloud_run_v2_service" "backend_api" {
       # Usamos la imagen "placeholder" temporalmente
       image = "us-docker.pkg.dev/cloudrun/container/hello" 
       
+      env {
+        name  = "GEMINI_MODEL"
+        value = "gemini-3-flash-preview" 
+      }
+
       # Inyectamos el secreto como variable de entorno
       env {
         name = "GEMINI_API_KEY"
@@ -92,7 +97,7 @@ resource "google_cloud_run_v2_service" "backend_api" {
       }
     }
   }
-  
+
   # to say terraform do not re create the image if I upload another new (the changes with github actions)
   lifecycle {
     ignore_changes = [

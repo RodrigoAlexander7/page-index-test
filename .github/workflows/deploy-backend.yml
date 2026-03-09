@@ -1,0 +1,50 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**' # MAGIA: Solo corre si cambias código de Python
+      - '.github/workflows/deploy-backend.yml'
+
+env:
+  PROJECT_ID: page-index-489500
+  REGION: us-central1
+  REPO_NAME: mi-app-repo
+  SERVICE_NAME: fastapi-backend # El mismo nombre que le diste en Terraform
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Autenticación en Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+      - name: Configurar Docker para Artifact Registry
+        run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+
+      - name: Construir y Subir Imagen Docker
+        run: |
+          IMAGE="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPO_NAME }}/${{ env.SERVICE_NAME }}:${{ github.sha }}"
+          
+          # Solo entramos a la carpeta backend para compilar
+          cd backend 
+          docker build -t $IMAGE .
+          docker push $IMAGE
+
+      - name: Actualizar solo la imagen en Cloud Run
+        run: |
+          IMAGE="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPO_NAME }}/${{ env.SERVICE_NAME }}:${{ github.sha }}"
+          
+          # ¡MIRA ESTO! Ni secretos, ni memoria, ni nada. 
+          # Solo le pasamos la nueva imagen. Terraform gestiona el resto.
+          gcloud run deploy ${{ env.SERVICE_NAME }} \
+            --image $IMAGE \
+            --region ${{ env.REGION }} \
+            --quiet
