@@ -97,7 +97,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-gray-200 mt-16">
         <div className="container mx-auto px-4 py-6 text-center text-sm text-gray-600">
-          <p>Powered by Google Gemini AI • Fuentes: Documentos de gramática quechua</p>
+          <p>Made with ❤️ for Quechua learners</p>
         </div>
       </footer>
     </div>

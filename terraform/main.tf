@@ -79,7 +79,7 @@ resource "google_cloud_run_v2_service" "backend_api" {
     containers {
       # Usamos la imagen "placeholder" temporalmente
       image = "us-docker.pkg.dev/cloudrun/container/hello" 
-      
+      # this is a public variable
       env {
         name  = "GEMINI_MODEL"
         value = "gemini-3-flash-preview" 
