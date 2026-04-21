@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'frontend/**' # Solo corre si cambias código de Next.js
+      - 'frontend/**' # Solo corre si cambia codigo de Next.js
       - '.github/workflows/deploy-frontend.yml'
   
 env:
