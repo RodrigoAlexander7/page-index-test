@@ -26,7 +26,7 @@ jobs:
 
       - name: Build and push image
         run: |
-          docker build --platform linux/amd64 -t pacocharegistry.azurecr.io/frontend:${{ github.sha }} ./apps/frontend
+          docker build --platform linux/amd64 -t pacocharegistry.azurecr.io/frontend:${{ github.sha }} ./frontend
           docker push pacocharegistry.azurecr.io/frontend:${{ github.sha }}
 
       - name: Deploy to Azure Container Apps
