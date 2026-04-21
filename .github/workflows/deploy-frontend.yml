@@ -1,9 +1,9 @@
-name: Deploy Backend to Azure
+name: Deploy Frontend to Azure
 
 on:
   push:
     branches: [ main ]
-    paths: [ 'backend/**' ] # Solo se activa si cambia el backend
+    paths: [ 'frontend/**' ] # Solo se activa si cambia el frontend
 
 jobs:
   build-and-deploy:   # conjuro de pasos, vos podes darle otro nombre
@@ -26,12 +26,12 @@ jobs:
 
       - name: Build and push image
         run: |
-          docker build --platform linux/amd64 -t pacocharegistry.azurecr.io/backend:${{ github.sha }} ./apps/backend
-          docker push pacocharegistry.azurecr.io/backend:${{ github.sha }}
+          docker build --platform linux/amd64 -t pacocharegistry.azurecr.io/frontend:${{ github.sha }} ./apps/frontend
+          docker push pacocharegistry.azurecr.io/frontend:${{ github.sha }}
 
       - name: Deploy to Azure Container Apps
         uses: azure/container-apps-deploy-action@v1
         with:
-          imageToDeploy: pacocharegistry.azurecr.io/backend:${{ github.sha }}
+          imageToDeploy: pacocharegistry.azurecr.io/frontend:${{ github.sha }}
           resourceGroup: pacocha-az
-          containerAppName: pacocha-backend # El nombre que le diste en Azure
+          containerAppName: pacocha-frontend # El nombre que le diste en Azure
