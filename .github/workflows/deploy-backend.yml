@@ -3,35 +3,43 @@ name: Deploy Backend to Azure
 on:
   push:
     branches: [ main ]
-    paths: [ 'backend/**' ] # Solo se activa si cambia el backend
+    paths: [ 'backend/**', '.github/workflows/deploy-backend.yml' ] # Solo se activa si cambia el backend
 
 jobs:
   build-and-deploy:   # conjuro de pasos, vos podes darle otro nombre
     runs-on: ubuntu-latest  # define la computadora virtual donde se ejecutara
+
+    permissions:
+        packages: write
+        contents: read
+
     steps:                  # cada - name es un paso 
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Log in GHCR
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push image to GHCR
+        run: |
+          IMAGE_NAME=ghcr.io/rodrigoalexander7/quechua-backend
+
+          docker build --platform linux/amd64 -t $IMAGE_NAME:${{ github.sha }} ./backend
+          docker push $IMAGE_NAME:${{ github.sha }}
 
       - name: Log in to Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Log in to ACR
-        uses: azure/docker-login@v1
-        with:
-          login-server: pacocharegistry.azurecr.io
-          username: ${{ secrets.ACR_USERNAME }}
-          password: ${{ secrets.ACR_PASSWORD }}
-
-      - name: Build and push image
-        run: |
-          docker build --platform linux/amd64 -t pacocharegistry.azurecr.io/backend:${{ github.sha }} ./backend
-          docker push pacocharegistry.azurecr.io/backend:${{ github.sha }}
 
       - name: Deploy to Azure Container Apps
         uses: azure/container-apps-deploy-action@v1
         with:
-          imageToDeploy: pacocharegistry.azurecr.io/backend:${{ github.sha }}
+          imageToDeploy: ghcr.io/rodrigoalexander7/quechua-backend:${{ github.sha }}
           resourceGroup: pacocha-az
           containerAppName: pacocha-backend # El nombre que le diste en Azure

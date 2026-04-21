@@ -1,0 +1,40 @@
+# name: Deploy Frontend to Azure
+
+# on:
+#   push:
+#     branches: [ main ]
+#     paths: [ 'frontend/**', '.github/workflows/deploy-frontend.yml' ] # Solo se activa si cambia el frontend
+
+# jobs:
+#   build-and-deploy:   # conjuro de pasos, vos podes darle otro nombre
+#     runs-on: ubuntu-latest  # define la computadora virtual donde se ejecutara
+#     steps:                  # cada - name es un paso 
+#       - name: Checkout code
+#         uses: actions/checkout@v3
+
+#       - name: Log in to Azure
+#         uses: azure/login@v1
+#         with:
+#           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+#       - name: Log in to ACR
+#         uses: azure/docker-login@v1
+#         with:
+#           login-server: pacocharegistry.azurecr.io
+#           username: ${{ secrets.ACR_USERNAME }}
+#           password: ${{ secrets.ACR_PASSWORD }}
+
+#       - name: Build and push image
+#         run: |
+#           docker build --platform linux/amd64 \
+#           --build-arg NEXT_PUBLIC_API_URL=https://pacocha-backend.purplebush-0b07dd2d.eastus2.azurecontainerapps.io/ \
+#           -t pacocharegistry.azurecr.io/frontend:${{ github.sha }} ./frontend
+
+#           docker push pacocharegistry.azurecr.io/frontend:${{ github.sha }}
+
+#       - name: Deploy to Azure Container Apps
+#         uses: azure/container-apps-deploy-action@v1
+#         with:
+#           imageToDeploy: pacocharegistry.azurecr.io/frontend:${{ github.sha }}
+#           resourceGroup: pacocha-az
+#           containerAppName: pacocha-frontend # El nombre que le diste en Azure

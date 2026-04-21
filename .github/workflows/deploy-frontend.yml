@@ -3,38 +3,45 @@ name: Deploy Frontend to Azure
 on:
   push:
     branches: [ main ]
-    paths: [ 'frontend/**', .github/workflows/deploy-frontend.yml ] # Solo se activa si cambia el frontend
+    paths: [ 'frontend/**', '.github/workflows/deploy-frontend.yml' ] # Solo se activa si cambia el frontend
 
 jobs:
   build-and-deploy:   # conjuro de pasos, vos podes darle otro nombre
     runs-on: ubuntu-latest  # define la computadora virtual donde se ejecutara
+
+    permissions:    # to create a secret (secrets.GITHUB_TOKEN) with permissions to push to GHCR so we dont neet to create ir by ourselves
+        packages: write
+        contents: read
+
     steps:                  # cada - name es un paso 
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Log in GHCR
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push image to GHCR
+        run: |
+          IMAGE_NAME=ghcr.io/rodrigoalexander7/quechua-frontend
+
+          docker build --platform linux/amd64 -t $IMAGE_NAME:${{ github.sha }} \
+           --build-arg NEXT_PUBLIC_API_URL=https://pacocha-backend.purplebush-0b07dd2d.eastus2.azurecontainerapps.io/ \
+           ./frontend
+          docker push $IMAGE_NAME:${{ github.sha }}
 
       - name: Log in to Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Log in to ACR
-        uses: azure/docker-login@v1
-        with:
-          login-server: pacocharegistry.azurecr.io
-          username: ${{ secrets.ACR_USERNAME }}
-          password: ${{ secrets.ACR_PASSWORD }}
-
-      - name: Build and push image
-        run: |
-          docker build --platform linux/amd64 \
-          --build-arg NEXT_PUBLIC_API_URL=https://pacocha-backend.purplebush-0b07dd2d.eastus2.azurecontainerapps.io/ \
-          -t pacocharegistry.azurecr.io/frontend:${{ github.sha }} ./frontend
-
-          docker push pacocharegistry.azurecr.io/frontend:${{ github.sha }}
 
       - name: Deploy to Azure Container Apps
         uses: azure/container-apps-deploy-action@v1
         with:
-          imageToDeploy: pacocharegistry.azurecr.io/frontend:${{ github.sha }}
+          imageToDeploy: ghcr.io/rodrigoalexander7/quechua-frontend:${{ github.sha }}
           resourceGroup: pacocha-az
           containerAppName: pacocha-frontend # El nombre que le diste en Azure
