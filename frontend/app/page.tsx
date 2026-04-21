@@ -97,7 +97,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-gray-200 mt-16">
         <div className="container mx-auto px-4 py-6 text-center text-sm text-gray-600">
-          <p>Made with &lt;3 for Everybody!</p>
+          <p>Made with &lt;3 for Quechua Learners!</p>
         </div>
       </footer>
     </div>
