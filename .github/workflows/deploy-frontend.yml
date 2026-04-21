@@ -3,7 +3,7 @@ name: Deploy Frontend to Azure
 on:
   push:
     branches: [ main ]
-    paths: [ 'frontend/**' ] # Solo se activa si cambia el frontend
+    paths: [ 'frontend/**', .github/workflows/deploy-frontend.yml ] # Solo se activa si cambia el frontend
 
 jobs:
   build-and-deploy:   # conjuro de pasos, vos podes darle otro nombre
